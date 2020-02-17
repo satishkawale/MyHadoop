@@ -1,0 +1,499 @@
+*******************************************************************************
+	Delivering an Encopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)terprise Data Hub in the cloud with Cloudera
+*******************************************************************************
+
+Start a instance with minimum 8 GB ram (preferably m4.large)
+.....NOTE::::: use ubuntu 14.4 os....... for create instance use 4.xlarge......
+
+
+
+-----*** Create VPC ***-----
+
+........Under VPC - create vpc with single public subnet
+1.vpc select
+2.add vpc 
+3.assign name
+4.launch vpc
+........Set auto assign publuc ip setting for the subnet
+1.copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128),save
+
+
+.......Edit the default security group 
+1.use default security group 
+edit inbound - add
+
+all traffic - your-ip/32
+
+*******************************************************************************
+	Delivering an Encopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)terprise Data Hub in the cloud with Cloudera
+*******************************************************************************
+
+Start a instance with minimum 8 GB ram (preferably m4.large)
+.....NOTE::::: use ubuntu 14.4 os....... for create instance use 4.xlarge......
+
+
+
+-----*** Create VPC ***-----
+
+........Under VPC - create vpc with single public subnet
+1.vpc select
+2.add vpc 
+3.assign name
+4.launch vpc
+........Set auto assign publuc ip setting for the subnet
+1.copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128),save
+
+
+.......Edit the default security group 
+1.use default security group 
+edit inbound - add
+
+all traffic - your-ip/32
+
+
+-----*** SSH in to the instance you created ***-----
+$ ssh -i /path/to/key_file.pem ubuntu@instance_hostname
+
+
+-----*** Update the server ***-----
+$ sudo apt-get update && sudo apt-get dist-upgrade -y
+
+-----*** Disable transparent huge pages ***-----
+$ sudo nano /etc/rc.local
+## Add these lines:
+
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+    echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+    echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+$sudo -i
+
+$source /etc/rc.local 
+
+-----*** Install NTP ***-----
+$ sudo apt-get install ntp -y 
+$ sudo service ntp status
+## If it isn't running 
+$ sudo service ntp start 
+
+
+-----*** Set Swappiness ***-----
+sudo sysctl -a | grep vm.swappiness
+sudo sysctl vm.swappiness=1
+###
+1.when configer 1st instance
+2.select action->image
+3.ami option select-> select main instance create 5mircopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)ror img 
+4.img name count 5,
+5. select advance option copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+    #!/bin/bash
+    sudo sysctl vm.swappiness=1
+6.launch instance ########   
+
+
+
+
+### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
+check “No reboot”
+
+
+-----*** Install and start CM ***-----
+
+SSH into cloudera-manager host
+
+
+$ wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
+
+$ chmod u+x cloudera-manager-installer.bin
+
+$ sudo ./cloudera-manager-installer.bin
+copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+
+## in browser "public_ip_of_cm(main_i*******************************************************************************
+	Delivering an Encopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)terprise Data Hub in the cloud with Cloudera
+*******************************************************************************
+
+Start a instance with minimum 8 GB ram (preferably m4.large)
+.....NOTE::::: use ubuntu 14.4 os....... for create instance use 4.xlarge......
+
+
+
+-----*** Create VPC ***-----
+
+........Under VPC - create vpc with single public subnet
+1.vpc select
+2.add vpc 
+3.assign name
+4.launch vpc
+........Set auto assign publuc ip setting for the subnet
+1.copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128),save
+
+
+.......Edit the default security group 
+1.use default security group 
+edit inbound - add
+
+all traffic - your-ip/32
+
+
+-----*** SSH in to the instance you created ***-----
+$ ssh -i /path/to/key_file.pem ubuntu@instance_hostname
+
+
+-----*** Update the server ***-----
+$ sudo apt-get update && sudo apt-get dist-upgrade -y
+
+-----*** Disable transparent huge pages ***-----
+$ sudo nano /etc/rc.local
+## Add these lines:
+
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+    echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+    echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+$sudo -i
+
+$source /etc/rc.local 
+
+-----*** Install NTP ***-----
+$ sudo apt-get install ntp -y 
+$ sudo service ntp status
+## If it isn't running 
+$ sudo service ntp start 
+
+
+-----*** Set Swappiness ***-----
+sudo sysctl -a | grep vm.swappiness
+sudo sysctl vm.swappiness=1
+###
+1.when configer 1st instance
+2.select action->image
+3.ami option select-> select main instance create 5mircopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)ror img 
+4.img name count 5,
+5. select advance option copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+    #!/bin/bash
+    sudo sysctl vm.swappiness=1
+6.launch instance ########   
+
+
+
+
+### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
+check “No reboot”
+
+
+-----*** Install and start CM ***-----
+
+SSH into cloudera-manager host
+
+
+$ wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
+
+$ chmod u+x cloudera-manager-installer.bin
+
+$ sudo ./cloudera-manager-installer.bin
+copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+
+## in browser "public_ip_of_cm(main_instnce):7180" 
+
+username : admin
+password : admin 
+
+## Note : in login credentials page 
+	  select user ubuntu 
+	  all users accept same private key (give the .pem key created for the instances)
+###
+#we have to copy all instance public_ip public_dns instance name launch ##
+##adjustment of ecosystem load ###nstnce):7180" 
+
+username : admin*******************************************************************************
+	Delivering an Encopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)terprise Data Hub in the cloud with Cloudera
+*******************************************************************************
+
+Start a instance with minimum 8 GB ram (preferably m4.large)
+.....NOTE::::: use ubuntu 14.4 os....... for create instance use 4.xlarge......
+
+
+
+-----*** Create VPC ***-----
+
+........Under VPC - create vpc with single public subnet
+1.vpc select
+2.add vpc 
+3.assign name
+4.launch vpc
+........Set auto assign publuc ip setting for the subnet
+1.copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128),save
+
+
+.......Edit the default security group 
+1.use default security group 
+edit inbound - add
+
+all traffic - your-ip/32
+
+
+-----*** SSH in to the instance you created ***-----
+$ ssh -i /path/to/key_file.pem ubuntu@instance_hostname
+
+
+-----*** Update the server ***-----
+$ sudo apt-get update && sudo apt-get dist-upgrade -y
+
+-----*** Disable transparent huge pages ***-----
+$ sudo nano /etc/rc.local
+## Add these lines:
+
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+    echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+    echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+$sudo -i
+
+$source /etc/rc.local 
+
+-----*** Install NTP ***-----
+$ sudo apt-get install ntp -y 
+$ sudo service ntp status
+## If it isn't running 
+$ sudo service ntp start 
+
+
+-----*** Set Swappiness ***-----
+sudo sysctl -a | grep vm.swappiness
+sudo sysctl vm.swappiness=1
+###
+1.when configer 1st instance
+2.select action->image
+3.ami option select-> select main instance create 5mircopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)ror img 
+4.img name count 5,
+5. select advance option copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+    #!/bin/bash
+    sudo sysctl vm.swappiness=1
+6.launch instance ########   
+
+
+
+
+### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
+check “No reboot”
+
+
+-----*** Install and start CM ***-----
+
+SSH into cloudera-manager host
+
+
+$ wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
+
+$ chmod u+x cloudera-manager-installer.bin
+
+$ sudo ./cloudera-manager-installer.bi*******************************************************************************
+	Delivering an Encopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)terprise Data Hub in the cloud with Cloudera
+*******************************************************************************
+
+Start a instance with minimum 8 GB ram (preferably m4.large)
+.....NOTE::::: use ubuntu 14.4 os....... for create instance use 4.xlarge......
+
+
+
+-----*** Create VPC ***-----
+
+........Under VPC - create vpc with single public subnet
+1.vpc select
+2.add vpc 
+3.assign name
+4.launch vpc
+........Set auto assign publuc ip setting for the subnet
+1.copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128),save
+
+
+.......Edit the default security group 
+1.use default security group 
+edit inbound - add
+
+all traffic - your-ip/32
+
+
+-----*** SSH in to the instance you created ***-----
+$ ssh -i /path/to/key_file.pem ubuntu@instance_hostname
+
+
+-----*** Update the server ***-----
+$ sudo apt-get update && sudo apt-get dist-upgrade -y
+
+-----*** Disable transparent huge pages ***-----
+$ sudo nano /etc/rc.local
+## Add these lines:
+
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+    echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+    echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+$sudo -i
+
+$source /etc/rc.local 
+
+-----*** Install NTP ***-----
+$ sudo apt-get install ntp -y 
+$ sudo service ntp status
+## If it isn't running 
+$ sudo service ntp start 
+
+
+-----*** Set Swappiness ***-----
+sudo sysctl -a | grep vm.swappiness
+sudo sysctl vm.swappiness=1
+###
+1.when configer 1st instance
+2.select action->image
+3.ami option select-> select main instance create 5mircopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)ror img 
+4.img name count 5,
+5. select advance option copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+    #!/bin/bash
+    sudo sysctl vm.swappiness=1
+6.launch instance ########   
+
+
+
+
+### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
+check “No reboot”
+
+
+-----*** Install and start CM ***-----
+
+SSH into cloudera-manager host
+
+
+$ wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
+
+$ chmod u+x cloudera-manager-installer.bin
+
+$ sudo ./cloudera-manager-installer.bin
+copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+
+## in browser "public_ip_of_cm(main_instnce):7180" 
+
+username : admin
+password : admin 
+
+## Note : in login credentials page 
+	  select user ubuntu 
+	  all users accept same private key (give the .pem key created for the instances)
+###
+#we have to copy all instance public_ip public_dns instance name launch ##
+##adjustment of ecosystem load ###n
+copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+
+## in browser "public_ip_of_cm(main_instnce):7180" 
+
+username : admin
+password : admin 
+
+## Note : in login credentials page 
+	  select user ubuntu 
+	  all users accept same private key (give the .pem key created for the instances)
+###
+#we have to copy all instance public_ip public_dns instance name launch ##
+##adjustment of ecosystem load ###
+password : admin 
+
+## Note : in login credentials page 
+	  select user ubuntu 
+	  all users accept same private key (give the .pem key created for the instances)
+###
+#we have to copy all instance public_ip public_dns instance name launch ##
+##adjustment of ecosystem load ###
+-----*** SSH in to the instance you created ***-----
+$ ssh -i /path/to/key_file.pem ubuntu@instance_hostname
+
+
+-----*** Update the server ***-----
+$ sudo apt-get update && sudo apt-get dist-upgrade -y
+
+-----*** Disable transparent huge pages ***-----
+$ sudo nano /etc/rc.local
+## Add these lines:
+
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+    echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+    echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+$sudo -i
+
+$source /etc/rc.local 
+
+-----*** Install NTP ***-----
+$ sudo apt-get install ntp -y 
+$ sudo service ntp status
+## If it isn't running 
+$ sudo service ntp start 
+
+
+-----*** Set Swappiness ***-----
+sudo sysctl -a | grep vm.swappiness
+sudo sysctl vm.swappiness=1
+###
+1.when configer 1st instance
+2.select action->image
+3.ami option select-> select main instance create 5mircopy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)ror img 
+4.img name count 5,
+5. select advance option copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+    #!/bin/bash
+    sudo sysctl vm.swappiness=1
+6.launch instance ########   
+
+
+
+
+### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
+check “No reboot”
+
+
+-----*** Install and start CM ***-----
+
+SSH into cloudera-manager host
+
+
+$ wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
+
+$ chmod u+x cloudera-manager-installer.bin
+
+$ sudo ./cloudera-manager-installer.bin
+copy your ip address(browse-my ip address)/cidr(if ipv4-32,ipvc-128)
+
+## in browser "public_ip_of_cm(main_instnce):7180" 
+
+username : admin
+password : admin 
+
+## Note : in login credentials page 
+	  select user ubuntu 
+	  all users accept same private key (give the .pem key created for the instances)
+###
+#we have to copy all instance public_ip public_dns instance name launch ##
+##adjustment of ecosystem load ###
+
+
+
